@@ -9,7 +9,7 @@ def testeImagens():
     kernel = np.ones((3,3), np.uint8)
     img_process = cv.dilate(img_process, kernel, iterations=2)
 
-    contornos, hier = cv.findContours(img_process, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
+    contornos, _ = cv.findContours(img_process, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
     #cv.drawContours(img, contornos, -1 , (0,255,0), 3)
     for c in contornos:
         perimeter = cv.arcLength(c, True)
