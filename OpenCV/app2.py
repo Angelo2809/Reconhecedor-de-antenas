@@ -1,9 +1,8 @@
 import cv2 as cv
 import numpy as np
 
-def testeImagens():
-    img  = cv.imread("antena.png")
-    #img  = cv.imread("antena4.png")
+def testeImagens(file, number):
+    img = cv.imread(file)
     img_gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
     _, img_process = cv.threshold(img_gray, 215, 255, cv.THRESH_BINARY)
     kernel = np.ones((3,3), np.uint8)
@@ -37,7 +36,7 @@ def testeImagens():
 
     cv.imshow("Original", img)
     cv.imshow("process", img_process)
-
+    cv.imwrite(f"../results/antenas-{number}.png", img)
     cv.waitKey(0)
 
 webcam = cv.VideoCapture(0)
@@ -80,6 +79,7 @@ def testeVideo():
         if cv.waitKey(2) == 27:
             break
 
-testeVideo()
-#testeImagens()
+#testeVideo()
+testeImagens("antena.png", 1)    
+testeImagens("antena4.png", 2)
 cv.destroyAllWindows()
